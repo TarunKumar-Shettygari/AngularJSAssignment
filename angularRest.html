@@ -1,0 +1,69 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <script type="text/javascript" src="restController.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div ng-app="RestApp">
+    	<div ng-controller="RestController">
+			<div ng-show="tableFlag">
+				<h1 style="margin-left:300px">User Profiles <button style="margin-left:500px" class="btn btn-default" type="submit" ng-click="create()">Create Profile</button></h1>
+				<table class="table table-striped">
+					<tr>
+						<th>Name</th>
+						<th>Email_id</th>
+						<th>Password</th>
+					</tr>
+					<tr ng-repeat="profile in response">
+						<td>{{profile.name}}</td>
+						<td>{{profile.email_id}}</td>
+						<td>{{profile.password}}</td>
+						<td><button class="btn btn-default" type="submit" ng-click="update(profile.name)">Update</button></td>
+						<td><button class="btn btn-default" type="submit" ng-click="del(profile.name)">Delete</button></td>
+					</tr>
+				</table>
+			</div>
+			<div ng-show="createFlag">
+				<h1>Create profile</h1>
+				<form>
+					<div class="form-group">
+      					<label>Name:</label>
+      					<input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="name" name="name" required>
+   				    </div>
+    				<div class="form-group">
+      					<label>Email:</label>
+      					<input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="email_id" name="email" required>
+   				    </div>
+    				<div class="form-group">
+      					<label>Password:</label>
+      					<input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="password" name="pwd" required>
+    				</div>
+    				<button type="submit" ng-click="createProfile()" class="btn btn-default">Submit</button>
+  				</form>
+			</div>
+			<div ng-show="updateFlag">
+				<h1>Update profile</h1>
+				<form>
+					<div class="form-group">
+      					<label>Name:</label>
+      					<input type="text" class="form-control" id="name1" placeholder="Enter name" ng-model="name" name="name">
+   				    </div>
+    				<div class="form-group">
+      					<label>Email:</label>
+      					<input type="email" class="form-control" id="email1" placeholder="Enter email" ng-model="email_id" name="email">
+   				    </div>
+    				<div class="form-group">
+      					<label>Password:</label>
+      					<input type="password" class="form-control" id="pwd1" placeholder="Enter password" ng-model="password" name="pwd">
+    				</div>
+    				<button type="submit" ng-click="updateProfile()" class="btn btn-default">Submit</button>
+  				</form>
+			</div>
+    	</div>
+    </div>
+</body>
+</html>
